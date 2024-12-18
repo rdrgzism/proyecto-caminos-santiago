@@ -1,0 +1,155 @@
+@import "node_modules/ol/ol.css";
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+/* Estilo para el header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px; /* Aumentado para mayor consistencia con el botón */
+  z-index: 10;
+  background-color: #007bff; /* Mismo color que el botón para homogeneidad */
+  display: flex; /* Centra el contenido del header */
+  align-items: center;
+  justify-content: center; /* Centra el texto horizontalmente */
+  color: #fff; /* Texto blanco como el botón */
+  font-size: 16px; /* Tamaño consistente con el botón */
+  font-weight: bold; /* Opcional, para resaltar el header */
+  padding: 0 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Sombra consistente */
+  text-align: center;
+}
+
+/* Estilo para el mapa */
+#map {
+  position: absolute;
+  top: 60px; /* Altura del header */
+  bottom: 0;
+  width: 100%;
+  height: calc(100% - 60px); /* Ajustado para evitar superposición */
+  z-index: 1; /* Asegura que el mapa esté detrás de los demás elementos */
+}
+
+/* Estilo para los botones */
+.map-button {
+  position: absolute;
+  top: 70px; /* Mantiene un espacio uniforme desde el header */
+  left: 10px; /* Posición horizontal fija */
+  background-color: #007bff; /* Azul consistente con el header */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px; /* Un poco más grande para mayor clicabilidad */
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold; /* Para que destaque */
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Sombra consistente con el header */
+  z-index: 20; /* Asegura que los botones estén por encima del mapa */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.map-button:hover {
+  background-color: #0056b3; /* Oscurecido para un efecto hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada al pasar el ratón */
+}
+
+.map-button:active {
+  background-color: #003d80; /* Aún más oscuro para clic */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Sombra reducida para clic */
+}
+
+/* Ajustar el control de zoom de OpenLayers */
+.ol-zoom {
+  position: absolute;
+  top: 80px !important; /* Ajustado para que coincida con la posición general de botones/map-button */
+  left: 10px; /* Alineado con los botones */
+  z-index: 20; /* Asegura que esté por encima del mapa pero por debajo del popup */
+}
+
+/* Estilo para los popups */
+.ol-popup {
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra consistente con botones/header */
+  padding: 15px;
+  border-radius: 8px; /* Radios ajustados para uniformidad */
+  border: 1px solid #007bff; /* Azul consistente con el proyecto */
+  bottom: 12px;
+  left: -50px;
+  min-width: 220px; /* Ampliado ligeramente para mejor visibilidad */
+  z-index: 2000; /* Asegura que esté por encima de todos los demás elementos */
+  font-size: 14px; /* Tamaño consistente */
+  font-family: 'Arial', sans-serif; /* Fuente estándar */
+  color: #333; /* Texto en gris oscuro para mejor legibilidad */
+}
+
+/* Flecha de popup */
+.ol-popup:after,
+.ol-popup:before {
+  top: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.ol-popup:after {
+  border-top-color: white; /* Color del fondo del popup */
+  border-width: 10px;
+  left: 48px;
+  margin-left: -10px;
+}
+
+.ol-popup:before {
+  border-top-color: #007bff; /* Azul para el borde exterior */
+  border-width: 11px;
+  left: 48px;
+  margin-left: -11px;
+}
+
+/* Botón de cierre del popup */
+.ol-popup-closer {
+  text-decoration: none;
+  position: absolute;
+  top: 5px; /* Ajustado para separación uniforme */
+  right: 10px; /* Más margen para consistencia */
+  font-size: 16px; /* Aumentado para mejor clicabilidad */
+  color: #007bff; /* Azul consistente */
+  cursor: pointer; /* Muestra que es clicable */
+  transition: color 0.3s ease; /* Transición suave para hover */
+}
+
+.ol-popup-closer:hover {
+  color: #0056b3; /* Oscurecido en hover */
+}
+
+.ol-popup-closer:after {
+  content: "✖"; /* Botón de cierre en estilo unicode */
+}
+
+#map-controls {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 10;
+}
+
+#overviewmap-container {
+  position: relative;
+  margin-bottom: 20px; /* Añade espacio entre el OverviewMap y otros controles */
+}
+
+#scale-line-container {
+  position: relative;
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="https://openlayers.org/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Using OpenLayers with Vite</title>
+  </head>
+  <body>
+    <header>
+      <h1>Mapa Interactivo</h1>
+    </header>
+
+    <button id="button-acoruna" class="map-button">Centrar en A Coruña</button>
+
+    <div id="map"></div>
+
+    <div id="popup" class="ol-popup">
+      <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+      <div id="popup-content"></div>
+    </div>
+
+    <div id="map-controls">
+      <div id="overviewmap-container"></div>
+      <div id="scale-line-container"></div>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
